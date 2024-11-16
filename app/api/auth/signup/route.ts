@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       .where(eq(usersTable.email, email));
 
     if (existingUser.length > 0) {
-      console.log(existingUser);
+      // console.log(existingUser);
       return ApiResponse(false, "User already exists", 400);
     }
 
@@ -37,8 +37,8 @@ export async function POST(request: Request) {
       "User registered successfully. Please login to continue",
       201
     );
-  } catch (error) {
-    console.log("Error in signup route: ", error);
+  } catch {
+    // console.log("Error in signup route: ", error);
 
     return ApiResponse(false, "Error registering user", 500);
   }

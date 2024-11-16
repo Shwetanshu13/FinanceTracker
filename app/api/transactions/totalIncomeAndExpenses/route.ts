@@ -57,8 +57,8 @@ export async function GET() {
       totalIncome,
       totalExpenses,
     });
-  } catch (error) {
-    console.error("Error calculating total income and expenses:", error);
+  } catch {
+    // console.error("Error calculating total income and expenses:", error);
     return ApiResponse(false, "An error occurred", 500);
   }
 }

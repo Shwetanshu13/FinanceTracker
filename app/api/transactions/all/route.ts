@@ -8,7 +8,7 @@ import { eq } from "drizzle-orm";
 export async function GET() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-  // console.log(user);
+  // // console.log(user);
 
   if (!session || !user) {
     return ApiResponse(
@@ -19,7 +19,7 @@ export async function GET() {
   }
 
   const userId = user.id;
-  // console.log(userId);
+  // // console.log(userId);
 
   if (!userId) {
     return ApiResponse(
@@ -48,8 +48,8 @@ export async function GET() {
         status: 200,
       }
     );
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // console.log(error);
     return ApiResponse(false, "An error occured while fetching recipies", 500);
   }
 }

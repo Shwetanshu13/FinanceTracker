@@ -5,12 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-// type SignInError =
-//   | "CredentialsSignin"
-//   | "OAuthSignin"
-//   | "EmailSignin"
-//   | "Default";
-
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +13,7 @@ const SignIn: React.FC = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password });
+    // console.log({ email, password });
 
     try {
       const result = await signIn("credentials", {
@@ -28,14 +22,14 @@ const SignIn: React.FC = () => {
         password,
       });
       if (result?.error) {
-        console.log(result);
+        // console.log(result);
         alert(result.error);
       }
       if (result?.url) {
         router.replace("/home");
       }
     } catch (error: unknown) {
-      console.log(error);
+      // console.log(error);
       if (error instanceof Error) alert(error?.message);
     }
   };

@@ -50,8 +50,8 @@ export async function PUT(request: NextRequest) {
     }
 
     return ApiResponse(true, "Transaction updated successfully", 200);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // console.log(error);
     return ApiResponse(
       false,
       "An error occurred while updating the transaction",

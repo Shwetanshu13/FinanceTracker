@@ -27,8 +27,8 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
     try {
       await axios.delete(`/api/transactions/delete?id=${id}`);
       onDelete(id); // Notify parent component to remove this transaction from the list
-    } catch (error) {
-      console.error("Error deleting transaction:", error);
+    } catch {
+      // console.error("Error deleting transaction:", error);
     }
   };
 

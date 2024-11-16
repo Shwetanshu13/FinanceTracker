@@ -26,7 +26,7 @@ const ProfilePage: React.FC = () => {
         if (userResponse.data.success && transactionsResponse.data.success) {
           const userData = userResponse.data.data;
           const transactionsCount = transactionsResponse.data.data;
-          console.log(userData, transactionsCount);
+          // console.log(userData, transactionsCount);
 
           setUserProfile({
             name: userData.name,
@@ -38,8 +38,8 @@ const ProfilePage: React.FC = () => {
         } else {
           setError("Failed to fetch user data");
         }
-      } catch (err) {
-        console.error(err);
+      } catch {
+        // console.error(err);
         setError("An error occurred while fetching profile data");
       } finally {
         setIsLoading(false);

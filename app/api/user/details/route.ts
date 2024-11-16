@@ -35,8 +35,8 @@ export async function GET() {
       dob: userData.dob,
       gender: userData.gender,
     });
-  } catch (error) {
-    console.error(error);
+  } catch {
+    // console.error(error);
     return ApiResponse(false, "Failed to fetch user details", 500);
   }
 }

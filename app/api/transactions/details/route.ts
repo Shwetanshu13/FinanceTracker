@@ -51,8 +51,8 @@ export async function GET(request: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
-    console.error(error);
+  } catch {
+    // console.error(error);
     return ApiResponse(
       false,
       "An error occurred while fetching the transaction",

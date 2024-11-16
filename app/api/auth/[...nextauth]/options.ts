@@ -31,7 +31,7 @@ const authOptions: AuthOptions = {
             .where(eq(usersTable.email, credentials.email));
 
           if (users.length === 0) {
-            console.log("No user found");
+            // console.log("No user found");
             throw new Error("No user found with this email address");
           }
 
@@ -44,14 +44,14 @@ const authOptions: AuthOptions = {
           );
 
           if (!isPasswordCorrect) {
-            console.log("Password incorrect");
+            // console.log("Password incorrect");
             throw new Error("Password is incorrect");
           }
 
           // Return a sanitized user object (exclude sensitive fields like password)
           return { id: String(user.id), name: user.name, email: user.email };
-        } catch (error) {
-          console.error("Error in Login", error);
+        } catch {
+          // console.error("Error in Login", error);
           return null;
         }
       },

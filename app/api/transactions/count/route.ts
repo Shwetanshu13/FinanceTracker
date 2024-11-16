@@ -29,8 +29,8 @@ export async function GET() {
       201,
       transactionsCount
     );
-  } catch (error) {
-    console.error(error);
+  } catch {
+    // console.error(error);
     return ApiResponse(false, "Failed to fetch transaction count", 500);
   }
 }

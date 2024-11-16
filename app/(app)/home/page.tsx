@@ -26,8 +26,8 @@ const Home: React.FC = () => {
 
         setTotalIncome(totalIncome);
         setTotalExpenses(totalExpenses);
-      } catch (err: unknown) {
-        console.error("Error fetching data:", err);
+      } catch {
+        // console.error("Error fetching data:", err);
         setError("Failed to fetch data.");
       } finally {
         setLoading(false);

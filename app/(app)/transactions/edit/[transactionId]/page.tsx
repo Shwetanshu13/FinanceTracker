@@ -8,7 +8,7 @@ const EditTransactionPage = () => {
   const params = useParams<{ transactionId: string }>();
   const transactionId = decodeURIComponent(params.transactionId);
 
-  // console.log(transactionId);
+  // // console.log(transactionId);
 
   return (
     <div className="my-16">

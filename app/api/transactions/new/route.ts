@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
     });
 
     return ApiResponse(true, "Transaction created successfully", 201);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // console.log(error);
     return ApiResponse(
       false,
       "An error occurred while creating the transaction",

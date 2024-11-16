@@ -44,8 +44,8 @@ export async function DELETE(request: NextRequest) {
     }
 
     return ApiResponse(true, "Transaction deleted successfully", 200);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // console.log(error);
     return ApiResponse(
       false,
       "An error occurred while deleting the transaction",

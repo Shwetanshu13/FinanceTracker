@@ -16,7 +16,7 @@ const SignUp: React.FC = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, email, password, dob, gender });
+    // console.log({ name, email, password, dob, gender });
     try {
       const signUpResponse = await axios.post("/api/auth/signup", {
         name,
@@ -26,14 +26,14 @@ const SignUp: React.FC = () => {
         gender,
       });
 
-      console.log(signUpResponse);
+      // console.log(signUpResponse);
       alert(signUpResponse.data.message);
 
       if (signUpResponse.data.success) {
         router.push("/auth/signin");
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // console.log(error);
       alert("Error signing up");
     }
   };

@@ -22,9 +22,9 @@ const Transactions: React.FC = () => {
       try {
         const response = await axios.get("/api/transactions/all");
         setTransactions(response.data.messages);
-      } catch (error: unknown) {
+      } catch {
         setError("An error occurred while fetching transactions.");
-        console.error(error);
+        // console.error(error);
       } finally {
         setIsLoading(false);
       }

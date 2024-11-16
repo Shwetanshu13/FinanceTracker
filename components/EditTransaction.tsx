@@ -19,7 +19,7 @@ const EditTransaction = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
 
   const transactionId = Number(params.id);
-  console.log(params, transactionId);
+  // console.log(params, transactionId);
 
   useEffect(() => {
     const fetchTransactionDetails = async () => {
