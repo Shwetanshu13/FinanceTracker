@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
+import logoImg from "@/logo.jpg";
 
 const Navbar: React.FC = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -19,7 +21,7 @@ const Navbar: React.FC = () => {
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo or Brand Name */}
+          <Image src={logoImg} alt="Logo" width={75} height={75} />
           <div className="text-2xl font-semibold text-gray-800">
             <Link href="/">My Finance App</Link>
           </div>
