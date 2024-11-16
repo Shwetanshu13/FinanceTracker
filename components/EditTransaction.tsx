@@ -32,7 +32,7 @@ const EditTransaction = ({ params }: { params: { id: string } }) => {
         } else {
           setError(response.data.message);
         }
-      } catch (err) {
+      } catch {
         setError("Failed to fetch transaction details");
       } finally {
         setLoading(false);
@@ -54,7 +54,7 @@ const EditTransaction = ({ params }: { params: { id: string } }) => {
       } else {
         setError(response.data.message);
       }
-    } catch (err) {
+    } catch {
       setError("Failed to update transaction");
     }
   };

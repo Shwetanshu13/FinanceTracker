@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { usersTable } from "@/db/schema";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { AuthOptions } from "next-auth";
+import { AuthOptions, User } from "next-auth";
 
 const authOptions: AuthOptions = {
   providers: [
@@ -14,12 +14,17 @@ const authOptions: AuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(
+        credentials: Record<"email" | "password", string> | undefined
+      ): Promise<User | null> {
         try {
+          if (!credentials || !credentials.email || !credentials.password) {
+            throw new Error("Missing email or password");
+          }
+
           const db = drizzle(process.env.DATABASE_URL!);
 
-          // console.log(credentials.email, credentials.password);
-
+          // Query the database to find the user by email
           const users = await db
             .select()
             .from(usersTable)
@@ -31,8 +36,8 @@ const authOptions: AuthOptions = {
           }
 
           const user = users[0];
-          // console.log(user);
 
+          // Compare the hashed password with the one provided in credentials
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
             user.password
@@ -43,9 +48,10 @@ const authOptions: AuthOptions = {
             throw new Error("Password is incorrect");
           }
 
-          return user;
+          // Return a sanitized user object (exclude sensitive fields like password)
+          return { id: String(user.id), name: user.name, email: user.email };
         } catch (error) {
-          console.log("Error in Login " + error);
+          console.error("Error in Login", error);
           return null;
         }
       },
@@ -61,7 +67,6 @@ const authOptions: AuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      // session.user.id = token.id;
       if (token) {
         session.user.id = String(token._id);
         session.user.name = token.name;

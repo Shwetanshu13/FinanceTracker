@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import { drizzle } from "drizzle-orm/neon-http";
 import { transactionsTable } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
@@ -6,7 +5,7 @@ import ApiResponse from "@/utils/ApiResponse";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
 

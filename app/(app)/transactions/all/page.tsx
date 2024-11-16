@@ -4,8 +4,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TransactionItem } from "@/components";
 
+type Transaction = {
+  id: number;
+  title: string;
+  amount: number;
+  transactionType: "income" | "expense";
+  date: string;
+};
+
 const Transactions: React.FC = () => {
-  const [transactions, setTransactions] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,8 +22,9 @@ const Transactions: React.FC = () => {
       try {
         const response = await axios.get("/api/transactions/all");
         setTransactions(response.data.messages);
-      } catch (error: any) {
+      } catch (error: unknown) {
         setError("An error occurred while fetching transactions.");
+        console.error(error);
       } finally {
         setIsLoading(false);
       }

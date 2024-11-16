@@ -5,6 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+// type SignInError =
+//   | "CredentialsSignin"
+//   | "OAuthSignin"
+//   | "EmailSignin"
+//   | "Default";
+
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,24 +22,22 @@ const SignIn: React.FC = () => {
     console.log({ email, password });
 
     try {
-      try {
-        const result = await signIn("credentials", {
-          redirect: false,
-          email,
-          password,
-        });
-        if (result?.error) {
-          console.log(result);
-          alert(result.error);
-        }
-        if (result?.url) {
-          router.replace("/home");
-        }
-      } catch (error: any) {
-        console.log(error);
-        alert(error.message);
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      if (result?.error) {
+        console.log(result);
+        alert(result.error);
       }
-    } catch (error) {}
+      if (result?.url) {
+        router.replace("/home");
+      }
+    } catch (error: unknown) {
+      console.log(error);
+      if (error instanceof Error) alert(error?.message);
+    }
   };
 
   return (
@@ -83,7 +87,7 @@ const SignIn: React.FC = () => {
           </button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/auth/signup"
             className="text-blue-600 hover:underline hover:text-blue-500"

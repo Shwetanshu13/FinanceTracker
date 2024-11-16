@@ -1,12 +1,11 @@
 import { getServerSession } from "next-auth";
-import { NextRequest } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/options";
 import ApiResponse from "@/utils/ApiResponse";
 import { transactionsTable } from "@/db/schema";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq } from "drizzle-orm";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   // console.log(user);

@@ -43,7 +43,7 @@ const AddTransaction: React.FC = () => {
       } else {
         setError("Failed to create transaction");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setError("An error occurred while creating the transaction");
     } finally {

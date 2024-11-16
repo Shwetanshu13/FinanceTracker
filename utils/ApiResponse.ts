@@ -2,7 +2,7 @@ const ApiResponse = (
   success: boolean,
   msg: string,
   stat: number,
-  data?: any
+  data?: unknown
 ) => {
   return Response.json(
     {

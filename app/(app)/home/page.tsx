@@ -10,7 +10,10 @@ const Home: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<{
+      totalIncome: number;
+      totalExpenses: number;
+    }> => {
       try {
         setLoading(true);
         setError(null);
@@ -23,16 +26,17 @@ const Home: React.FC = () => {
 
         setTotalIncome(totalIncome);
         setTotalExpenses(totalExpenses);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching data:", err);
         setError("Failed to fetch data.");
       } finally {
         setLoading(false);
       }
+      return { totalIncome, totalExpenses };
     };
 
     fetchData();
-  }, []);
+  }, [totalExpenses, totalIncome]);
 
   if (loading) {
     return (
